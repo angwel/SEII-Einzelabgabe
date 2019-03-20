@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     TextView response;
     Button btnAbschicken;
     Button btnAscii;
+    static String responseFromServer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
