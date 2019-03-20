@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnAbschicken;
     Button btnAscii;
     static String responseFromServer;
+    String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +33,23 @@ public class MainActivity extends AppCompatActivity {
         btnAbschicken.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                // establish connection with socket (after clicked)
+                if(matrikelnummer != null){
+                    message = matrikelnummer.getText().toString();
+                    send(v);
+                }
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                response.setText(responseFromServer);
             }
         });
+    }
+
+    public void send(View v){
+        Sender sender = new Sender();
+        sender.execute(message);
     }
 }
