@@ -46,6 +46,53 @@ public class MainActivity extends AppCompatActivity {
                 response.setText(responseFromServer);
             }
         });
+        //Button Ascii:
+
+        btnAscii.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                /** ASCII Table: switch every second number
+                 * from Matrikelnummer to a suitable ASCII character
+                 * e.g. 1 = a, 2 = b, ...
+                 */
+
+                // String[] to set characters
+                String[] asciiArr = new String[10];
+
+                asciiArr[0] = " ";
+                asciiArr[1] = "a";
+                asciiArr[2] = "b";
+                asciiArr[3] = "c";
+                asciiArr[4] = "d";
+                asciiArr[5] = "e";
+                asciiArr[6] = "f";
+                asciiArr[7] = "g";
+                asciiArr[8] = "h";
+                asciiArr[9] = "i";
+
+                message = matrikelnummer.getText().toString();
+
+                String num = message;
+
+                // entered numbers will be saved in a substring
+                String[] arr = new String[num.length()];
+                for (int i = 0; i < num.length(); i++) {
+                    arr[i] = num.substring(i,(i+1));
+                }
+
+                // the substring (start, end) helps to skip indices
+                for (int i = 1; i < arr.length; i+=2) {
+                    int index = Integer.parseInt(arr[i]);
+                    arr[i] = asciiArr[index];
+                }
+
+
+
+                response.setText(arr[0] + arr[1] + arr[2] + arr[3] + arr[4] + arr[5] + arr[6] +arr[7]);
+
+            }
+        });
     }
 
     public void send(View v){
